@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: *
+Sitemap: https://www.revisiku.com/sitemap.xml
