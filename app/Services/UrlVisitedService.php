@@ -13,7 +13,7 @@ class UrlVisitedService
         RateLimiter::hit('url-visit:'. $url.$ip, 30);
         if (!RateLimiter::tooManyAttempts('url-visit:'. $url.$ip, 2)) {
 
-            $check = UrlVisit::where('url',  $url)->first();
+            $check = UrlVisit::where('url', $url)->whereDate('created_at', today())->first();
 
             if ($check) {
                 return $check->update([

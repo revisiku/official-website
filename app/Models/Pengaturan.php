@@ -24,7 +24,7 @@ class Pengaturan extends Model
 
     public function scopeGetGlobalSettings($query)
     {
-        $params = ['site_name','tag','favicon','logo','logo_2','footer_copyright'];
+        $params = ['site_name','tag','favicon','logo','logo_2','footer_copyright', 'nav_animation_text'];
         return $query->select('name','value')
             ->tap(function($query) use ($params) {
                 collect($params)->map(function($param) use ($query) {

@@ -2067,6 +2067,111 @@ form#contact button:hover {
 
 /*
 ---------------------------------------------
+Custom Style
+---------------------------------------------
+*/
+.pointer {
+    cursor: pointer;
+}
+
+#page, #post-detail {
+    padding-top: 180px;
+}
+
+#page p, #post-detail p {
+    color: #1c1c1c;
+}
+
+#page .breadcrumb li, #post-detail .breadcrumb li {
+    font-size: 15px;
+}
+
+.page-header, .post-detail-header {
+
+}
+
+.page-content, .post-detail-content {
+    margin-top: 4rem;
+}
+
+.page-left, .post-content-left {
+    padding-right: 1.5rem;
+}
+
+.page-right h5, .post-content-right h5 {
+    text-align: center;
+}
+
+.page-right-entry-header {
+    font-size: 18px;
+}
+
+.page-right-entry-indicators li span {
+    font-size: 12px;
+}
+
+.post-detail-content h2, .post-detail-content h3, .post-detail-content h4, .post-detail-content h5 {
+    padding-top: 13px;
+    padding-bottom: 23px;
+}
+
+.page-content, .post-detail-content p {
+    margin-bottom: 23px;
+}
+
+.entry ul {
+    flex-wrap: wrap;
+}
+
+.entry ul li {
+    margin-right: 10px !important;
+    font-size: 14px;
+}
+
+.entry .entry-header {
+    font-size: 24px;
+}
+
+.error {
+    color: #cd0000 !important;
+}
+
+.error-number {
+    font-size: 130px;
+}
+
+.error-text {
+    font-size: 24px;
+}
+
+.error-description {
+    font-size: 16px;
+}
+
+.pagination li a:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0;
+    outline-offset: 0px;
+    outline: none;
+}
+
+.pagination .page-link {
+    border: 0;
+}
+
+.pagination .page-item.active .page-link, .page-link:hover  {
+    border-color: #fff;
+    text-decoration: underline;
+    background-color: #fff;
+    color: var(--main-color);
+}
+
+.pagination .page-link  {
+    padding: .375rem 0.95rem;
+}
+
+/*
+---------------------------------------------
 Footer Style
 ---------------------------------------------
 */

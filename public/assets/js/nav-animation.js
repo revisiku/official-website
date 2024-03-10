@@ -1,7 +1,7 @@
 (function ($) {
 	"use strict";
 
-  var words = services,
+  var words = wordFlickData,
     part,
     i = 0,
     offset = 0,

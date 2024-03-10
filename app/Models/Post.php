@@ -124,11 +124,14 @@ class Post extends Model
             ->whereByType($type);
     }
 
-    public function publishedAtConverter()
+    public function publishedAtShortConverter()
     {
-        return LangService::isOtherLang()
-                ? date('M d, Y', strtotime($this->published_at))
-                : \App\Helpers\IDDateFormat::convert($this->published_at, true);
+        return $this->getPublicPublishedAtShort();
+    }
+
+    public function publishedAtLongConverter()
+    {
+        return $this->getPublicPublishedAtLong();
     }
 
     public function getStatusHtml()

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\PublicController;
 use App\Models\Post;
+use App\Models\Stat\PostVisitor;
+use App\Services\VisitorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -12,8 +14,9 @@ class PostController extends PublicController
 
     protected $pageName = 'Blog';
 
+    private $postPerPage = 5;
 
-    public function index()
+    public function index_blog()
     {
         $posts = Post::select((new Post)->publicFields($this->langField))
             ->with('postCategory:id,'.$this->langField.'name as name')
@@ -25,15 +28,14 @@ class PostController extends PublicController
                     ->orWhere('en_short', 'LIKE', '%'.request()->search.'%')
                     ->orWhere('en_body', 'LIKE', '%'.request()->search.'%');
             }, fn ($query) => $query->latestPublishByType(Post::TYPE[0]))
-            ->paginate(5);
+            ->paginate($this->postPerPage)->withQueryString();
 
         $popularPosts = Post::select((new Post)->publicFields($this->langField))
-            ->withOut('postCategory')
             ->popularPublish(Post::TYPE[0])
-            ->limit(3)
+            ->limit(5)
             ->get();
 
-        return view('public.contents.blog.index',
+        return view('public.contents.post.blog_index',
             compact(
                 'posts',
                 'popularPosts'
@@ -41,7 +43,7 @@ class PostController extends PublicController
         );
     }
 
-    public function detail(Request $request)
+    public function post_detail(Request $request)
     {
         $post = Post::select((new Post)->publicFields($this->langField))
             ->with('postCategory:id,'.$this->langField.'name as name')
@@ -54,17 +56,22 @@ class PostController extends PublicController
             if (!Session::has('readed_posts')) Session::put('readed_posts', []);
             if (!in_array($post->slug, Session::get('readed_posts'))) {
                 if (Session::push('readed_posts', $post->slug)) return true;
-                Post::where('slug', $post->slug)->update(['hits' => ($post->hits+1)]);
+
+                if ($post->update(['hits' => ($post->hits+1)])) {
+                    PostVisitor::visitorChecker($post->id);
+                }
+
             }
-        };
+        } else {
+            return view('public.contents.post.404');
+        }
 
         $latestPosts = Post::select((new Post)->publicFields($this->langField))
-            ->withOut('postCategory')
             ->latestPublishByType(Post::TYPE[0])
             ->limit(3)
             ->get();
 
-        return view('public.contents.blog.detail',
+        return view('public.contents.post.detail',
             compact(
                 'post',
                 'latestPosts'

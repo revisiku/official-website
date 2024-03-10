@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                                <img src="assets/static/images/slider-dec.png" alt="">
+                                <img src="{{ asset('assets/static/images/slider-dec.png') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="about-left-image wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-                                <img src="assets/static/images/about-dec.png" alt="">
+                                <img src="{{ asset('assets/static/images/about-dec.png') }}" alt="">
                             </div>
                         </div>
                         <div class="col-lg-6 align-self-center wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
@@ -76,13 +76,13 @@
                                     <div class="menu">
                                         <div class="first-thumb wow fadeInRight" data-wow-delay=".3s">
                                             <div class="thumb active">
-                                                <span class="icon"><img src="assets/static/images/service-icon-01.png" alt=""></span>
+                                                <span class="icon"><img src="{{ asset('assets/static/images/service-icon-01.png') }}" alt=""></span>
                                                 Programming
                                             </div>
                                         </div>
                                         <div class="wow fadeInRight" data-wow-delay=".5s">
                                             <div class="thumb">
-                                                <span class="icon"><img src="assets/static/images/service-icon-02.png" alt=""></span>
+                                                <span class="icon"><img src="{{ asset('assets/static/images/service-icon-02.png') }}" alt=""></span>
                                                 Design
                                             </div>
                                         </div>
@@ -213,7 +213,7 @@
                                             <input type="text" class="form-control" name="email" id="email" placeholder="* Alamat Email" maxlength="75">
                                         </div>
                                         <div class="col-lg-6">
-                                            <textarea name="message" class="form-control" id="message" placeholder="* Masukkan pesan Anda.." maxlength="300"></textarea>
+                                            <textarea name="message" class="form-control" id="message" placeholder="* Masukkan pesan Anda.." maxlength="300">{{ request('message') ?? '' }}</textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <button type="submit" id="btn-submit" class="main-button">Kirim Pesan</button>
@@ -229,7 +229,7 @@
     </div>
 @endsection
 
-@push('js')
+@push('script')
     <script src="{{ asset('assets/js/is-number.js') }}"></script>
     <script src="{{ asset('assets/js/form-validation.js') }}"></script>
     <script>

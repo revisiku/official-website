@@ -7,5 +7,5 @@ use App\Http\Controllers\Public\PostController;
 
 
 Route::get('/', [BerandaController::class, 'index']);
-Route::get('/blog', [PostController::class, 'index']);
-Route::get('/blog/{slug}', [PostController::class, 'detail']);
+Route::get('/blog', [PostController::class, 'index_blog']);
+Route::get('/post/{slug}', [PostController::class, 'post_detail']);

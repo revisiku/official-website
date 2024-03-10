@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Helpers\IDDateFormat;
 use App\Helpers\Time;
+use App\Services\LangService;
 
 trait AppDatetime
 {
@@ -84,5 +85,19 @@ trait AppDatetime
         }
 
         return $this->deleted_at->diffForHumans();
+    }
+
+    public function getPublicPublishedAtShort()
+    {
+        return LangService::isOtherLang()
+                ? date('M d, Y', strtotime($this->published_at))
+                : IDDateFormat::convert($this->published_at, true, true);
+    }
+
+    public function getPublicPublishedAtLong()
+    {
+        return LangService::isOtherLang()
+                ? date('F d, Y', strtotime($this->published_at))
+                : IDDateFormat::convert($this->published_at, true);
     }
 }

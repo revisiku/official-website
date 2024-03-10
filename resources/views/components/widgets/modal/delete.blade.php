@@ -26,7 +26,7 @@
     </div>
 </div>
 
-@push('js')
+@push('script')
     <script >
         $(document).ready(function() {
             $('body').on('click', '.btn-delete',function () {
