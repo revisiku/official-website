@@ -71,7 +71,7 @@
             <footer class="main-footer float-button button-0">
                 <!-- To the right -->
                 <div class="float-right d-none d-sm-inline">
-                    Development Version
+                    @include('version')
                 </div>
                 <!-- Default to the left -->
                 <x-copyright />
